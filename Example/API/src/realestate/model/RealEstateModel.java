@@ -5,12 +5,13 @@ import javax.persistence.*;
 
 
 /**
- * The persistent class for the RealEstate database table.
+ * The persistent class for the RealEstates database table.
  * 
  */
 @Entity
-@NamedQuery(name="RealEstate.findAll", query="SELECT r FROM RealEstate r")
-public class RealEstate implements Serializable {
+@Table(name="RealEstates")
+@NamedQuery(name="RealEstateModel.findAll", query="SELECT r FROM RealEstateModel r")
+public class RealEstateModel implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
@@ -32,7 +33,7 @@ public class RealEstate implements Serializable {
 
 	private String type;
 
-	public RealEstate() {
+	public RealEstateModel() {
 	}
 
 	public int getIdRealEsate() {

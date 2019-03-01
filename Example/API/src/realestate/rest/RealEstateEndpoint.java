@@ -18,10 +18,12 @@ import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
 
+
+
 import javax.ws.rs.core.UriBuilder;
 
 import realestate.dao.RealEstateDAO;
-import realestate.model.RealEstate;
+import realestate.model.RealEstateModel;
 
 @RequestScoped
 @Path("/realestates")
@@ -33,8 +35,8 @@ public class RealEstateEndpoint {
 
     @POST
     @Transactional
-    public Response create(final RealEstate realestate) {
-	RealEstate new_re = new RealEstate();
+    public Response create(final RealEstateModel realestate) {
+	RealEstateModel new_re = new RealEstateModel();
 	new_re.setGardenSquaremeter(realestate.getGardenSquaremeter());
 	new_re.setLocation(realestate.getLocation());
 	new_re.setNumOfParkinglots(realestate.getNumOfParkinglots());
@@ -42,14 +44,14 @@ public class RealEstateEndpoint {
 	new_re.setSquaremeter(realestate.getSquaremeter());
 	new_re.setType(realestate.getType());
 	dao.saveOrUpdate(new_re);
-	return Response.created(UriBuilder.fromResource(RealEstateEndpoint.class).path(String.valueOf(new_re.getIdRealEsate())).build()).build();
+	return Response.created(UriBuilder.fromResource(RealEstateModel.class).path(String.valueOf(new_re.getIdRealEsate())).build()).build();
     }
 
     @GET
     @Path("/{id:[0-9][0-9]*}")
     @Transactional
     public Response findById(@PathParam("id") final int id) {
-	RealEstate realestate = dao.findById(id);
+	RealEstateModel realestate = dao.findById(id);
 	if (realestate == null) {
 	    return Response.status(Status.NOT_FOUND).build();
 	}
@@ -58,17 +60,17 @@ public class RealEstateEndpoint {
 
     @GET
     @Transactional
-    public List<RealEstate> listAll(@QueryParam("start") final Integer startPosition,
+    public List<RealEstateModel> listAll(@QueryParam("start") final Integer startPosition,
 	    @QueryParam("max") final Integer maxResult) {
-	final List<RealEstate> realestates = dao.findAll();
+	final List<RealEstateModel> realestates = dao.findAll();
 	return realestates;
     }
 
     @PUT
     @Path("/{id:[0-9][0-9]*}")
     @Transactional
-    public Response update(@PathParam("id") int id, final RealEstate realestate) {
-	RealEstate new_re = dao.findById(id);
+    public Response update(@PathParam("id") int id, final RealEstateModel realestate) {
+	RealEstateModel new_re = dao.findById(id);
 	new_re.setGardenSquaremeter(realestate.getGardenSquaremeter());
 	new_re.setLocation(realestate.getLocation());
 	new_re.setNumOfParkinglots(realestate.getNumOfParkinglots());

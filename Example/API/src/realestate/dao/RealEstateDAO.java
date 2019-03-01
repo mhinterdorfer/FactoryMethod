@@ -6,27 +6,27 @@ import javax.inject.Named;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
-import realestate.model.RealEstate;
+import realestate.model.RealEstateModel;
 
 @Named
 public class RealEstateDAO {
     @PersistenceContext
     EntityManager em;
 
-    public List<RealEstate> findAll() {
-	return em.createQuery("select r from RealEstate r", RealEstate.class).getResultList();
+    public List<RealEstateModel> findAll() {
+	return em.createQuery("select r from RealEstateModel r", RealEstateModel.class).getResultList();
     }
 
-    public RealEstate findById(int id) {
-	return em.find(RealEstate.class, id);
+    public RealEstateModel findById(int id) {
+	return em.find(RealEstateModel.class, id);
     }
 
     public void deleteById(int id) {
-	RealEstate re = findById(id);
+	RealEstateModel re = findById(id);
 	em.remove(re);
     }
 
-    public void saveOrUpdate(RealEstate re) {
+    public void saveOrUpdate(RealEstateModel re) {
 	em.merge(re);
     }
 }
