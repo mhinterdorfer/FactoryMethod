@@ -42,10 +42,7 @@ public class RealEstateEndpoint {
 	new_re.setSquaremeter(realestate.getSquaremeter());
 	new_re.setType(realestate.getType());
 	dao.saveOrUpdate(new_re);
-	return Response
-		.created(
-			UriBuilder.fromResource(RealEstate.class).path(String.valueOf(new_re.getIdRealEsate())).build())
-		.build();
+	return Response.created(UriBuilder.fromResource(RealEstateEndpoint.class).path(String.valueOf(new_re.getIdRealEsate())).build()).build();
     }
 
     @GET
@@ -84,6 +81,7 @@ public class RealEstateEndpoint {
 
     @DELETE
     @Path("/{id:[0-9][0-9]*}")
+    @Transactional
     public Response deleteById(@PathParam("id") final int id) {
 	dao.deleteById(id);
 	return Response.noContent().build();

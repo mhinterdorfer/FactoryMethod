@@ -14,7 +14,7 @@ public class RealEstateDAO {
     EntityManager em;
 
     public List<RealEstate> findAll() {
-	return em.createQuery("SELECT r FROM RealEstate r", RealEstate.class).getResultList();
+	return em.createQuery("select r from RealEstate r", RealEstate.class).getResultList();
     }
 
     public RealEstate findById(int id) {
