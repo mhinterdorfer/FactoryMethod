@@ -1,5 +1,6 @@
 package realestate.rest;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -18,11 +19,13 @@ import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
 
-
-
 import javax.ws.rs.core.UriBuilder;
 
 import realestate.dao.RealEstateDAO;
+import realestate.interfaces.Location;
+import realestate.interfaces.RealEstate;
+import realestate.interfaces.RealEstateFactory;
+import realestate.interfaces.RealEstateType;
 import realestate.model.RealEstateModel;
 
 @RequestScoped
@@ -44,7 +47,9 @@ public class RealEstateEndpoint {
 	new_re.setSquaremeter(realestate.getSquaremeter());
 	new_re.setType(realestate.getType());
 	dao.saveOrUpdate(new_re);
-	return Response.created(UriBuilder.fromResource(RealEstateModel.class).path(String.valueOf(new_re.getIdRealEsate())).build()).build();
+	return Response.created(
+		UriBuilder.fromResource(RealEstateEndpoint.class).path(String.valueOf(new_re.getIdRealEsate())).build())
+		.build();
     }
 
     @GET
@@ -62,8 +67,8 @@ public class RealEstateEndpoint {
     @Transactional
     public List<RealEstateModel> listAll(@QueryParam("start") final Integer startPosition,
 	    @QueryParam("max") final Integer maxResult) {
-	final List<RealEstateModel> realestates = dao.findAll();
-	return realestates;
+	List<RealEstateModel> realestatemodels = dao.findAll();
+	return realestatemodels;
     }
 
     @PUT
