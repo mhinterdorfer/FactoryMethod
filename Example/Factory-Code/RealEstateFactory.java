@@ -14,8 +14,8 @@ public abstract class RealEstateFactory {
     public RealEstateFactory() {
     }
 
-    private RealEstateFactory waldhausenFactory = new WaldhausenRealEstateFactory();
-    private RealEstateFactory linzFactory = new LinzRealEstateFactory();
+    private static RealEstateFactory waldhausenFactory = new WaldhausenRealEstateFactory();
+    private static RealEstateFactory linzFactory = new LinzRealEstateFactory();
 
     /**
      * @param type
@@ -37,7 +37,7 @@ public abstract class RealEstateFactory {
      * @param num_of_parkingslots
      * @return
      */
-    public RealEstate addRealEstate(Location location, RealEstateType type, double sqmeters, int rooms,
+    public static RealEstate addRealEstate(Location location, RealEstateType type, double sqmeters, int rooms,
 	    double garden_sqmeters, int num_of_parkingslots) {
 	if (location.equals(Location.Waldhausen)) {
 	    return waldhausenFactory.createRealEstate(type, sqmeters, rooms, garden_sqmeters, num_of_parkingslots);
