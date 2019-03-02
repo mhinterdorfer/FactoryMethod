@@ -1,27 +1,8 @@
-
-import java.util.*;
+package realestate.interfaces;
 
 /**
  * @author Michael Hinterdorfer
  */
-public class Location {
-
-	/**
-	 * Default constructor
-	 */
-	public Location() {
-	}
-
-	/**
-	 * 
-	 */
-	public void Linz;
-
-	/**
-	 * 
-	 */
-	public void Waldhausen;
-
-
-
+public enum Location {
+    Linz, Waldhausen
 }

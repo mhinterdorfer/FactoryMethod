@@ -1,32 +1,8 @@
-
-import java.util.*;
+package realestate.interfaces;
 
 /**
  * @author Michael Hinterdorfer
  */
-public class RealEstateType {
-
-	/**
-	 * Default constructor
-	 */
-	public RealEstateType() {
-	}
-
-	/**
-	 * 
-	 */
-	public void Apartment;
-
-	/**
-	 * 
-	 */
-	public void Villa;
-
-	/**
-	 * 
-	 */
-	public void House;
-
-
-
+public enum RealEstateType {
+    Apartment, Villa, House;
 }

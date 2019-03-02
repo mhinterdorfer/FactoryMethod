@@ -1,47 +1,44 @@
-
-import java.util.*;
+package realestate.interfaces;
 
 /**
  * @author Michael Hinterdorfer
  */
 public abstract class RealEstate {
 
-	/**
-	 * Default constructor
-	 */
-	public RealEstate() {
-	}
+    /**
+     * Default constructor
+     */
+    public RealEstate() {
+    }
 
-	/**
-	 * 
-	 */
-	private double price;
+    /**
+     * 
+     */
+    private double price;
 
-	/**
-	 * 
-	 */
-	private double squaremeter;
+    /**
+     * 
+     */
+    private double squaremeter;
 
-	/**
-	 * 
-	 */
-	private int rooms;
+    /**
+     * 
+     */
+    private int rooms;
 
-	/**
-	 * 
-	 */
-	private double garden_squaremeter;
+    /**
+     * 
+     */
+    private double garden_squaremeter;
 
-	/**
-	 * 
-	 */
-	private int num_of_parkinglots;
+    /**
+     * 
+     */
+    private int num_of_parkinglots;
 
-	/**
-	 * 
-	 */
-	private Location location;
-
-
+    /**
+     * 
+     */
+    private Location location;
 
 }

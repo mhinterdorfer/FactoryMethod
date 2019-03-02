@@ -1,46 +1,50 @@
+package realestate.interfaces;
 
-import java.util.*;
+import realestate.factories.LinzRealEstateFactory;
+import realestate.factories.WaldhausenRealEstateFactory;
 
 /**
  * @author Michael Hinterdorfer
  */
 public abstract class RealEstateFactory {
 
-	/**
-	 * Default constructor
-	 */
-	public RealEstateFactory() {
+    /**
+     * Default constructor
+     */
+    public RealEstateFactory() {
+    }
+
+    private RealEstateFactory waldhausenFactory = new WaldhausenRealEstateFactory();
+    private RealEstateFactory linzFactory = new LinzRealEstateFactory();
+
+    /**
+     * @param type
+     * @param sqmeters
+     * @param rooms
+     * @param garden_sqmeters
+     * @param num_of_parkingslots
+     * @return
+     */
+    protected abstract RealEstate createRealEstate(RealEstateType type, double sqmeters, int rooms,
+	    double garden_sqmeters, int num_of_parkingslots);
+
+    /**
+     * @param location
+     * @param type
+     * @param sqmeters
+     * @param rooms
+     * @param garden_sqmeters
+     * @param num_of_parkingslots
+     * @return
+     */
+    public RealEstate addRealEstate(Location location, RealEstateType type, double sqmeters, int rooms,
+	    double garden_sqmeters, int num_of_parkingslots) {
+	if (location.equals(Location.Waldhausen)) {
+	    return waldhausenFactory.createRealEstate(type, sqmeters, rooms, garden_sqmeters, num_of_parkingslots);
+	} else if (location.equals(Location.Linz)) {
+	    return linzFactory.createRealEstate(type, sqmeters, rooms, garden_sqmeters, num_of_parkingslots);
 	}
-
-	/**
-	 * 
-	 */
-	private int price_per_m2;
-
-
-
-	/**
-	 * @param type 
-	 * @param sqmeters 
-	 * @param rooms 
-	 * @param garden_sqmeters 
-	 * @param num_of_parkingslots 
-	 * @return
-	 */
-	protected abstract RealEstate createRealEstate(RealEstateType type, double sqmeters, int rooms, double garden_sqmeters, int num_of_parkingslots);
-
-	/**
-	 * @param location 
-	 * @param type 
-	 * @param sqmeters 
-	 * @param rooms 
-	 * @param garden_sqmeters 
-	 * @param num_of_parkingslots 
-	 * @return
-	 */
-	public RealEstate addRealEstate(Location location, RealEstateType type, double sqmeters, int rooms, double garden_sqmeters, int num_of_parkingslots) {
-		// TODO implement here
-		return null;
-	}
+	return null;
+    }
 
 }
