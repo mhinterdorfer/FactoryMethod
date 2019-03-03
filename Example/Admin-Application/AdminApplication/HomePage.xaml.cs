@@ -21,5 +21,10 @@ namespace AdminApplication
         {
             this.NavigationService.Navigate(new CreateRealEstate());
         }
+
+        private void BtnShowRealEstates_Click(object sender, System.Windows.RoutedEventArgs e)
+        {
+            this.NavigationService.Navigate(new ShowRealEstates());
+        }
     }
 }

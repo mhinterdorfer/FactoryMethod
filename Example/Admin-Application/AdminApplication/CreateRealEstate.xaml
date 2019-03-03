@@ -23,6 +23,6 @@
         <ComboBox x:Name="cbxLocation" HorizontalAlignment="Left" Margin="178,56,0,0" VerticalAlignment="Top" Width="120"/>
         <ComboBox x:Name="cbxTypes" HorizontalAlignment="Left" Margin="178,83,0,0" VerticalAlignment="Top" Width="120"/>
         <TextBox x:Name="txtResult" HorizontalAlignment="Left" Height="248" Margin="408,56,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="367" VerticalScrollBarVisibility="Auto"/>
-        <Button x:Name="btnLoadAll" Content="Load All" HorizontalAlignment="Left" Margin="51,260,0,0" VerticalAlignment="Top" Width="247" Click="BtnLoadAll_Click"/>
+        <Button x:Name="btnShowInList" Content="Show in List" HorizontalAlignment="Left" Margin="51,259,0,0" VerticalAlignment="Top" Width="247" Click="BtnShowInList_Click" IsEnabled="False"/>
     </Grid>
 </Page>

@@ -2,6 +2,9 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Net.Http;
+using System.Text;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -14,6 +17,7 @@ namespace AdminApplication
     {
         public List<string> locations = new List<string>();
         private DataAccessLayer.DataAccessLayer DAL = DataAccessLayer.DataAccessLayer.Instance;
+        private string REST_URL = "RealEstateAPI/rest/realestates";
         public CreateRealEstate()
         {
             InitializeComponent();
@@ -27,18 +31,29 @@ namespace AdminApplication
             }
         }
 
-        private void BtnCreate_Click(object sender, RoutedEventArgs e)
+        private async void BtnCreate_Click(object sender, RoutedEventArgs e)
         {
             RealEstate realEstate = RealEstateFactory.addRealEstate((Location)Enum.Parse(typeof(Location), cbxLocation.SelectedItem.ToString()),
                 (RealEstateType)Enum.Parse(typeof(RealEstateType), cbxTypes.SelectedItem.ToString()), Convert.ToDouble(txtSquaremeter.Text),
                 Convert.ToInt32(txtRooms.Text), Convert.ToDouble(txtGardenSquaremeter.Text), Convert.ToInt32(txtParkinglots.Text));
             txtResult.Text = "Result: \n" + realEstate.ToString();
+
+            var stringPayload = await Task.Run(() => JsonConvert.SerializeObject(new RealEstateModel(realEstate.GetType().Name, realEstate.getLocation().ToString(), realEstate.getRooms(), realEstate.getSquaremeter(), realEstate.getGarden_squaremeter(), realEstate.getNum_of_parkinglots())));
+            var httpContent = new StringContent(stringPayload, Encoding.UTF8, "application/json");
+            HttpResponseMessage response = await DAL.PostAsync(REST_URL, httpContent);
+            if (response.IsSuccessStatusCode)
+            {
+                btnShowInList.IsEnabled = true;
+            }
+            else
+            {
+                btnShowInList.IsEnabled = false;
+            }
         }
 
         private async void getAll()
         {
-            string getRE = "RealEstateAPI/rest/realestates";
-            string jsonRealEstate = await DAL.GetAsync(getRE);
+            string jsonRealEstate = await DAL.GetAsync(REST_URL);
             dynamic deserialized3 = JsonConvert.DeserializeObject(jsonRealEstate);
             foreach (var obj in deserialized3)
             {
@@ -58,6 +73,11 @@ namespace AdminApplication
         private void BtnLoadAll_Click(object sender, RoutedEventArgs e)
         {
             getAll();
+        }
+
+        private void BtnShowInList_Click(object sender, RoutedEventArgs e)
+        {
+            this.NavigationService.Navigate(new ShowRealEstates());
         }
     }
 }
