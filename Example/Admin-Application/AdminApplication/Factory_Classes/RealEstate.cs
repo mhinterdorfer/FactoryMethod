@@ -84,13 +84,13 @@ public abstract class RealEstate
     public override string ToString()
     {
         string realestate = "";
-        realestate += "Price: " + this.getPrice() + "\n";
-        realestate += "Squaremeter: " + this.getSquaremeter() + "\n";
-        realestate += "Garden Squaremeter: " + this.getGarden_squaremeter() + "\n";
-        realestate += "Location: " + this.getLocation() + "\n";
-        realestate += "Num of parkinglots: " + this.getNum_of_parkinglots() + "\n";
-        realestate += "Rooms: " + this.getRooms() + "\n";
-        realestate += "Type: " + this.GetType() + "\n";
+        realestate += "Price: " + getPrice() + "\n";
+        realestate += "Squaremeter: " + getSquaremeter() + "\n";
+        realestate += "Garden Squaremeter: " + getGarden_squaremeter() + "\n";
+        realestate += "Location: " + getLocation() + "\n";
+        realestate += "Num of parkinglots: " + getNum_of_parkinglots() + "\n";
+        realestate += "Rooms: " + getRooms() + "\n";
+        realestate += "Type: " + GetType() + "\n";
         return realestate;
     }
 

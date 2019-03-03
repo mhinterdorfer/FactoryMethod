@@ -58,15 +58,22 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="RealEstateModel.cs" />
-    <Compile Include="ShowRealEstates.xaml.cs">
+    <Compile Include="Pages\DetailsPage.xaml.cs">
+      <DependentUpon>DetailsPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccessLayer\RealEstateModel.cs" />
+    <Compile Include="Pages\ShowRealEstates.xaml.cs">
       <DependentUpon>ShowRealEstates.xaml</DependentUpon>
     </Compile>
-    <Page Include="CreateRealEstate.xaml">
+    <Page Include="Pages\CreateRealEstate.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="HomePage.xaml">
+    <Page Include="Pages\DetailsPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\HomePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -78,7 +85,7 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="CreateRealEstate.xaml.cs">
+    <Compile Include="Pages\CreateRealEstate.xaml.cs">
       <DependentUpon>CreateRealEstate.xaml</DependentUpon>
     </Compile>
     <Compile Include="DataAccessLayer\DataAccessLayer.cs" />
@@ -91,14 +98,14 @@
     <Compile Include="Factory_Classes\RealEstateType.cs" />
     <Compile Include="Factory_Classes\Villa.cs" />
     <Compile Include="Factory_Classes\WaldhausenRealEstateFactory.cs" />
-    <Compile Include="HomePage.xaml.cs">
+    <Compile Include="Pages\HomePage.xaml.cs">
       <DependentUpon>HomePage.xaml</DependentUpon>
     </Compile>
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="ShowRealEstates.xaml">
+    <Page Include="Pages\ShowRealEstates.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

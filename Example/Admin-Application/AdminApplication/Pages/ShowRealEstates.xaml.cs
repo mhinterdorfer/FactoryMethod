@@ -1,10 +1,14 @@
 ﻿using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
+using System.Linq;
 using System.Net.Http;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Controls;
+using System.Windows.Input;
 
 namespace AdminApplication
 {
@@ -48,16 +52,17 @@ namespace AdminApplication
                 txtParkinglots.Text = selectedItem.NumOfParkinglots.ToString();
                 txtRooms.Text = selectedItem.Rooms.ToString();
                 txtSquaremeter.Text = selectedItem.Squaremeter.ToString();
-                lblPrice.Content = "";
             }
         }
 
         private async void BtnSave_Click(object sender, System.Windows.RoutedEventArgs e)
         {
-            RealEstateModel updateModel = new RealEstateModel(cbxType.SelectedItem.ToString(),
-                cbxLocation.SelectedItem.ToString(), Convert.ToInt32(txtRooms.Text),
-                Convert.ToDouble(txtSquaremeter.Text),
-                Convert.ToDouble(txtGardenSquaremeter.Text),
+            RealEstateModel updateModel = new RealEstateModel(
+                cbxType.SelectedItem.ToString(),
+                cbxLocation.SelectedItem.ToString(),
+                Convert.ToInt32(txtRooms.Text),
+                Convert.ToDouble(txtSquaremeter.Text.Replace(",", "."), CultureInfo.InvariantCulture),
+                Convert.ToDouble(txtGardenSquaremeter.Text.Replace(",", "."), CultureInfo.InvariantCulture),
                 Convert.ToInt32(txtParkinglots.Text));
             RealEstateModel currentModel = (RealEstateModel)dtgRealEstates.SelectedItem;
             string stringPayload = await Task.Run(() => JsonConvert.SerializeObject(updateModel));
@@ -78,10 +83,9 @@ namespace AdminApplication
             txtParkinglots.Text = "";
             txtRooms.Text = "";
             txtSquaremeter.Text = "";
-            lblPrice.Content = "";
         }
 
-        private void BtnCalculatePrice_Click(object sender, System.Windows.RoutedEventArgs e)
+        private void BtnShowDetails_Click(object sender, System.Windows.RoutedEventArgs e)
         {
             RealEstateModel currentModel = (RealEstateModel)dtgRealEstates.SelectedItem;
             if (currentModel != null)
@@ -94,7 +98,7 @@ namespace AdminApplication
                     currentModel.GardenSquaremeter,
                     currentModel.NumOfParkinglots
                 );
-                lblPrice.Content = "Price: " + realEstate.getPrice() + "€";
+                NavigationService.Navigate(new Details(realEstate));
             }
         }
 
@@ -110,6 +114,100 @@ namespace AdminApplication
                     ResetForm();
                 }
             }
+        }
+
+        private void IntNumberValidation(object sender, TextCompositionEventArgs e)
+        {
+            Regex regex = new Regex("[^0-9]+");
+            e.Handled = regex.IsMatch(e.Text);
+        }
+
+        private void DoubleNumberValidation(object sender, TextCompositionEventArgs e)
+        {
+            // Here e.Text is string so we need to convert it into char
+            char ch = e.Text[0];
+
+            if ((char.IsDigit(ch) || ch == '.'))
+            {
+                //Here TextBox1.Text is name of your TextBox
+                TextBox sen = (TextBox)sender;
+                if (ch == '.' && sen.Text.Contains('.'))
+                {
+                    e.Handled = true;
+                }
+            }
+            else
+            {
+                e.Handled = true;
+            }
+        }
+
+        private bool CheckInputFields()
+        {
+            if (cbxLocation.SelectedItem == null)
+            {
+                return false;
+            }
+            else if (cbxType.SelectedItem == null)
+            {
+                return false;
+            }
+            else if (txtGardenSquaremeter.Text == "")
+            {
+                return false;
+            }
+            else if (txtParkinglots.Text == "")
+            {
+                return false;
+            }
+            else if (txtSquaremeter.Text == "")
+            {
+                return false;
+            }
+            else if (txtRooms.Text == "")
+            {
+                return false;
+            }
+            return true;
+        }
+
+        private void EnableButtons(bool enable)
+        {
+            btnDelete.IsEnabled = enable;
+            btnSave.IsEnabled = enable;
+            btnShowDetails.IsEnabled = enable;
+        }
+
+        private void CbxType_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            EnableButtons(CheckInputFields());
+        }
+
+        private void CbxLocation_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            EnableButtons(CheckInputFields());
+        }
+
+        private void TxtRooms_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            EnableButtons(CheckInputFields());
+        }
+
+        private void TxtSquaremeter_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            txtSquaremeter.Text.Replace(",", ".");
+            EnableButtons(CheckInputFields());
+        }
+
+        private void TxtGardenSquaremeter_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            txtGardenSquaremeter.Text.Replace(",", ".");
+            EnableButtons(CheckInputFields());
+        }
+
+        private void TxtParkinglots_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            EnableButtons(CheckInputFields());
         }
     }
 }

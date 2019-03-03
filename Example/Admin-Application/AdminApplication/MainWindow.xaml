@@ -5,6 +5,5 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:AdminApplication"
         mc:Ignorable="d"
-        Title="MainWindow" Height="533.782" Width="886.4"
-                  Source="HomePage.xaml">
-</NavigationWindow>
+        Title="Real Estate Admin Application" Height="550" Width="900"
+                  Source="Pages/HomePage.xaml" ResizeMode="NoResize"/>

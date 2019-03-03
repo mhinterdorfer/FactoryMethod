@@ -1,0 +1,41 @@
+﻿<Page x:Class="AdminApplication.ShowRealEstates"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:AdminApplication"
+      mc:Ignorable="d" d:DesignWidth="900"
+      Background="White"
+      Title="ShowRealEstates" Height="493.709">
+
+    <Grid>
+        <DataGrid x:Name="dtgRealEstates" AutoGenerateColumns="False"  Height="207" Margin="50,60,49.782,0" VerticalAlignment="Top" HorizontalContentAlignment="Stretch" 
+                    ColumnWidth="*" CanUserAddRows="False" CanUserDeleteRows="False" IsReadOnly="True" SelectionChanged="DtgRealEstates_SelectionChanged" FontSize="20">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Type" Binding="{Binding Type}" />
+                <DataGridTextColumn Header="Location" Binding="{Binding Location}" />
+                <DataGridTextColumn Header="Rooms" Binding="{Binding Rooms}" />
+                <DataGridTextColumn Header="Squaremeter" Binding="{Binding Squaremeter}" />
+                <DataGridTextColumn Header="Garden" Binding="{Binding GardenSquaremeter}" />
+                <DataGridTextColumn Header="Parkinglots" Binding="{Binding NumOfParkinglots}" />
+            </DataGrid.Columns>
+        </DataGrid>
+        <Label x:Name="lblType" Content="Type:" HorizontalAlignment="Left" Margin="50,294,0,0" VerticalAlignment="Top" Width="115" FontSize="20"/>
+        <Label x:Name="lblLocation" Content="Location:" HorizontalAlignment="Left" Margin="170,294,0,0" VerticalAlignment="Top" Width="115" FontSize="20"/>
+        <Label x:Name="lblRooms" Content="Rooms:" HorizontalAlignment="Left" Margin="290,294,0,0" VerticalAlignment="Top" Width="115" FontSize="20"/>
+        <Label x:Name="lblSquaremeter" Content="Squaremeter:" HorizontalAlignment="Left" Margin="410,294,0,0" VerticalAlignment="Top" Width="130" FontSize="20"/>
+        <Label x:Name="lblGardenSquaremeter" Content="Garden Sqmeter:" HorizontalAlignment="Left" Margin="545,294,0,0" VerticalAlignment="Top" Width="160" FontSize="20"/>
+        <Label x:Name="lblNumOfParkinglots" Content="Parkingslots:" HorizontalAlignment="Left" Margin="710,294,0,0" VerticalAlignment="Top" Width="130" FontSize="20"/>
+        <ComboBox x:Name="cbxType" HorizontalAlignment="Left" Margin="50,335,0,0" VerticalAlignment="Top" Width="115" FontSize="20" Height="32" SelectionChanged="CbxType_SelectionChanged"/>
+        <ComboBox x:Name="cbxLocation" HorizontalAlignment="Left" Margin="170,335,0,0" VerticalAlignment="Top" Width="115" FontSize="20" Height="32" SelectionChanged="CbxLocation_SelectionChanged"/>
+        <TextBox x:Name="txtRooms" HorizontalAlignment="Left" Margin="290,335,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="115" FontSize="20" Height="32" PreviewTextInput="IntNumberValidation" TextChanged="TxtRooms_TextChanged"/>
+        <TextBox x:Name="txtSquaremeter" HorizontalAlignment="Left" Height="32" Margin="410,335,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="130" FontSize="20" PreviewTextInput="DoubleNumberValidation" TextChanged="TxtSquaremeter_TextChanged"/>
+        <TextBox x:Name="txtGardenSquaremeter" HorizontalAlignment="Left" Height="32" Margin="545,335,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="160" FontSize="20" PreviewTextInput="DoubleNumberValidation" TextChanged="TxtGardenSquaremeter_TextChanged"/>
+        <TextBox x:Name="txtParkinglots" HorizontalAlignment="Left" Height="32" Margin="710,335,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="130" FontSize="20" PreviewTextInput="IntNumberValidation" TextChanged="TxtParkinglots_TextChanged"/>
+        <Button x:Name="btnSave" Content="Save" HorizontalAlignment="Left" Margin="635,380,0,0" VerticalAlignment="Top" Width="90" Click="BtnSave_Click" Height="32" FontSize="20" IsEnabled="False"/>
+        <Button x:Name="btnShowDetails" Content="Show Details" HorizontalAlignment="Left" Margin="635,431,0,0" VerticalAlignment="Top" Width="205" Height="32" Click="BtnShowDetails_Click" FontSize="20" IsEnabled="False"/>
+        <Button x:Name="btnDelete" Content="Delete" HorizontalAlignment="Left" Margin="750,380,0,0" VerticalAlignment="Top" Width="90" Click="BtnDelete_Click" Height="32" FontSize="20" IsEnabled="False"/>
+        <Label x:Name="lblTitle" Content="Edit, Delete or Get Details from Real Estates" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" FontSize="25" Width="880" HorizontalContentAlignment="Center"/>
+
+    </Grid>
+</Page>
