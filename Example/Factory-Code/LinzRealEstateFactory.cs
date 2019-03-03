@@ -1,20 +1,16 @@
-
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
 /// <summary>
 /// @author Michael Hinterdorfer
 /// </summary>
-public class LinzRealEstateFactory : RealEstateFactory {
+public class LinzRealEstateFactory : RealEstateFactory
+{
 
-	public LinzRealEstateFactory() {
-	}
+    public LinzRealEstateFactory()
+    {
+    }
 
-	private double price_per_m2 = 9.9;
-    private double price_per_parkinglot = 100;
-    private static Location location = Location.Linz;
+    private readonly double price_per_m2 = 9.9;
+    private readonly double price_per_parkinglot = 100;
+    private static readonly Location location = Location.Linz;
 
     protected override RealEstate createRealEstate(RealEstateType type, double sqmeters, int rooms, double garden_sqmeters, int num_of_parkingslots)
     {

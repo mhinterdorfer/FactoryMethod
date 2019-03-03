@@ -1,14 +1,19 @@
+import { Apartment } from "./Apartment";
+import { House } from "./House";
+import { RealEstate } from "./RealEstate";
+import { Villa } from "./Villa";
+import { IRealEstateFactory } from "./IRealEstateFactory";
+import { Location1 } from "./Location";
+import { RealEstateType } from "./RealEstateType";
+
 /**
  * @author Michael Hinterdorfer
  */
-class LinzRealEstateFactory extends RealEstateFactory {
+export class LinzRealEstateFactory implements IRealEstateFactory {
   /**
    * Default constructor
    */
-  constructor() {
-    super();
-  }
-
+  constructor() {}
   /**
    *
    */

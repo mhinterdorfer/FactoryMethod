@@ -1,12 +1,9 @@
+import { Location1 } from "./Location";
+
 /**
  * @author Michael Hinterdorfer
  */
-abstract class RealEstate {
-  /**
-   * Default constructor
-   */
-  constructor() {}
-
+export interface RealEstate {
   /**
    *
    */

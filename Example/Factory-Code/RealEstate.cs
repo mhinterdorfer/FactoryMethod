@@ -81,4 +81,17 @@ public abstract class RealEstate
         this.location = location;
     }
 
+    public override string ToString()
+    {
+        string realestate = "";
+        realestate += "Price: " + getPrice() + "\n";
+        realestate += "Squaremeter: " + getSquaremeter() + "\n";
+        realestate += "Garden Squaremeter: " + getGarden_squaremeter() + "\n";
+        realestate += "Location: " + getLocation() + "\n";
+        realestate += "Num of parkinglots: " + getNum_of_parkinglots() + "\n";
+        realestate += "Rooms: " + getRooms() + "\n";
+        realestate += "Type: " + GetType() + "\n";
+        return realestate;
+    }
+
 }

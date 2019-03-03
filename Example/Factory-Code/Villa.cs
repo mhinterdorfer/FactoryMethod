@@ -8,15 +8,15 @@ public class Villa : RealEstate
     {
     }
 
-    private double price;
+    private readonly double price;
 
-    private double squaremeter;
+    private readonly double squaremeter;
 
-    private int rooms;
+    private readonly int rooms;
 
-    private double garden_squaremeter;
+    private readonly double garden_squaremeter;
 
-    private int num_of_parkinglots;
+    private readonly int num_of_parkinglots;
 
-    private Location location;
+    private readonly Location location;
 }

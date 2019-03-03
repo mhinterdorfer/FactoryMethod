@@ -1,8 +1,8 @@
 /**
  * @author Michael Hinterdorfer
  */
-enum RealEstateType {
-  Apartment,
-  Villa,
-  House
+export enum RealEstateType {
+  Apartment = "Apartment",
+  Villa = "Villa",
+  House = "House"
 }

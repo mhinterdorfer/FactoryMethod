@@ -1,13 +1,14 @@
+import { RealEstate } from "./RealEstate";
+import { Location1 } from "./Location";
+
 /**
  * @author Michael Hinterdorfer
  */
-class Villa extends RealEstate {
+export class Villa implements RealEstate {
   /**
    * Default constructor
    */
-  constructor() {
-    super();
-  }
+  constructor() {}
 
   /**
    *

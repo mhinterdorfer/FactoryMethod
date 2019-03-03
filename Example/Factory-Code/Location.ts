@@ -1,4 +1,4 @@
-enum Location1 {
-  Waldhausen,
-  Linz
+export enum Location1 {
+  Waldhausen = "Waldhausen",
+  Linz = "Linz"
 }
