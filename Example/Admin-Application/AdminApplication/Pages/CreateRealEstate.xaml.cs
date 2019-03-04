@@ -36,6 +36,7 @@ namespace AdminApplication
 
         private async void BtnCreate_Click(object sender, RoutedEventArgs e)
         {
+
             RealEstate realEstate = RealEstateFactory.addRealEstate(
                 (Location)Enum.Parse(typeof(Location), cbxLocation.SelectedItem.ToString()),
                 (RealEstateType)Enum.Parse(typeof(RealEstateType), cbxTypes.SelectedItem.ToString()),
@@ -43,43 +44,26 @@ namespace AdminApplication
                 Convert.ToInt32(txtRooms.Text),
                 Convert.ToDouble(txtGardenSquaremeter.Text, CultureInfo.InvariantCulture),
                 Convert.ToInt32(txtParkinglots.Text));
-            txtResult.Text = "Result: \n" + realEstate.ToString();
 
-            string stringPayload = await Task.Run(() => JsonConvert.SerializeObject(new RealEstateModel(realEstate.GetType().Name, realEstate.getLocation().ToString(), realEstate.getRooms(), realEstate.getSquaremeter(), realEstate.getGarden_squaremeter(), realEstate.getNum_of_parkinglots())));
-            StringContent httpContent = new StringContent(stringPayload, Encoding.UTF8, "application/json");
-            HttpResponseMessage response = await DAL.PostAsync(REST_URL, httpContent);
-            if (response.IsSuccessStatusCode)
+            if (realEstate != null)
             {
-                btnShowInList.IsEnabled = true;
+                txtResult.Text = "Result: \n" + realEstate.ToString();
+                string stringPayload = await Task.Run(() => JsonConvert.SerializeObject(new RealEstateModel(realEstate.GetType().Name, realEstate.getLocation().ToString(), realEstate.getRooms(), realEstate.getSquaremeter(), realEstate.getGarden_squaremeter(), realEstate.getNum_of_parkinglots())));
+                StringContent httpContent = new StringContent(stringPayload, Encoding.UTF8, "application/json");
+                HttpResponseMessage response = await DAL.PostAsync(REST_URL, httpContent);
+                if (response.IsSuccessStatusCode)
+                {
+                    btnShowInList.IsEnabled = true;
+                }
+                else
+                {
+                    btnShowInList.IsEnabled = false;
+                }
             }
             else
             {
-                btnShowInList.IsEnabled = false;
+                txtResult.Text = "Not possible to create " + cbxTypes.SelectedItem.ToString() + " in " + cbxLocation.SelectedItem.ToString() + ".";
             }
-        }
-
-        private async void getAll()
-        {
-            string jsonRealEstate = await DAL.GetAsync(REST_URL);
-            dynamic deserialized3 = JsonConvert.DeserializeObject(jsonRealEstate);
-            foreach (dynamic obj in deserialized3)
-            {
-                Console.WriteLine(obj["gardenSquaremeter"]);
-                RealEstate realEstate = RealEstateFactory.addRealEstate(
-                    (Location)Enum.Parse(typeof(Location), obj["location"].ToString()),
-                    (RealEstateType)Enum.Parse(typeof(RealEstateType), obj["type"].ToString()),
-                    Convert.ToDouble(obj["squaremeter"], CultureInfo.InvariantCulture),
-                    Convert.ToInt32(obj["rooms"]),
-                    Convert.ToDouble(obj["gardenSquaremeter"], CultureInfo.InvariantCulture),
-                    Convert.ToInt32(obj["numOfParkinglots"]));
-
-                txtResult.Text += "\n" + realEstate.ToString() + "\n";
-            }
-        }
-
-        private void BtnLoadAll_Click(object sender, RoutedEventArgs e)
-        {
-            getAll();
         }
 
         private void BtnShowInList_Click(object sender, RoutedEventArgs e)
