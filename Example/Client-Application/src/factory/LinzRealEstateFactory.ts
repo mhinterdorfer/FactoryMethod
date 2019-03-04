@@ -17,8 +17,8 @@ export class LinzRealEstateFactory implements IRealEstateFactory {
   /**
    *
    */
-  private price_per_m2: number = 9.9;
-  private price_per_parkinglot: number = 100;
+  private price_per_m2: number = 2377.4;
+  private price_per_parkinglot: number = 649.9;
   private location: Location1 = Location1.Linz;
 
   /**

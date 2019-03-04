@@ -8,8 +8,8 @@ public class LinzRealEstateFactory : RealEstateFactory
     {
     }
 
-    private readonly double price_per_m2 = 9.9;
-    private readonly double price_per_parkinglot = 100;
+    private readonly double price_per_m2 = 2377.4;
+    private readonly double price_per_parkinglot = 649.9;
     private static readonly Location location = Location.Linz;
 
     protected override RealEstate createRealEstate(RealEstateType type, double sqmeters, int rooms, double garden_sqmeters, int num_of_parkingslots)

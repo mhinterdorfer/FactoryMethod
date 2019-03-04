@@ -8,7 +8,7 @@ public class House : RealEstate
     {
     }
 
-    private readonly int price;
+    private readonly double price;
 
     private readonly double squaremeter;
 

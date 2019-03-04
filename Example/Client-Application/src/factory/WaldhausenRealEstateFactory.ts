@@ -17,7 +17,7 @@ export class WaldhausenRealEstateFactory implements IRealEstateFactory {
   /**
    *
    */
-  private price_per_m2: number = 6.5;
+  private price_per_m2: number = 820.9;
   private location: Location1 = Location1.Waldhausen;
 
   /**

@@ -8,7 +8,7 @@ public class WaldhausenRealEstateFactory : RealEstateFactory
     {
     }
 
-    private readonly double price_per_m2 = 6.9;
+    private readonly double price_per_m2 = 820.9;
     private static readonly Location location = Location.Waldhausen;
 
     protected override RealEstate createRealEstate(RealEstateType type, double sqmeters, int rooms, double garden_sqmeters, int num_of_parkingslots)
