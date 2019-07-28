@@ -32,7 +32,6 @@ namespace AdminApplication.DataAccessLayer
 
         public async Task<string> GetAsync(string Url)
         {
-            Console.WriteLine("GetAsync: " + Url);
             string JsonString = "";
             HttpResponseMessage Response = HttpClient.GetAsync(Url).Result;
             if (Response.IsSuccessStatusCode)
